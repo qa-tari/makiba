@@ -13,6 +13,15 @@ small imageboard script- on devel
 
 Installation
 ~~~~~~~~~~~~
+make sure to install php-gd
+https://www.php.net/manual/de/image.installation.php
+imagecreatefromjpeg is in plain php undefined
+debian:
+-> sudo apt install php-gd
+
+if you need help answer's are here: https://stackoverflow.com/questions/13338339/imagecreatefromjpeg-and-similar-functions-are-not-working-in-php
+
+
 
 To install, move all the files in the repo to a directory in the
 root of your webserver. For example, for a board called `/b/`, move
