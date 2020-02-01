@@ -22,7 +22,7 @@ debian:
 
 if you need help answer's are here: https://stackoverflow.com/questions/13338339/imagecreatefromjpeg-and-similar-functions-are-not-working-in-php
 
-~~~~~~~~~~~~
+
 
 To install, move all the files in the repo to a directory in the
 root of your webserver. For example, for a board called `/b/`, move
@@ -37,6 +37,6 @@ ADMINOPONLY=1,
 SORTBUMP=0
 REPLYBOX_TOP=0
 SHOWPOSTLIST=1
-PERPAGE=1 if you want
+PERPAGE=1 if you want 
 
  
