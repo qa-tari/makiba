@@ -2,49 +2,59 @@
 
 <b><SPAN>your imageboard title</SPAN></b></font>
 <style>
-    body{
-        background-color:#eef2ff;
-        background-image: linear-gradient(#d1d5ee,#eef2ff 200px);
-        background-repeat: repeat-x;
+    body {
+    background-color:#ffffee;
+    color:#800000;
 }
-.boardNav{color:#89a;}
-.postNum a,.postNum a:visited,.reflink,body{color:black;}
-.logo{color:#af0a0f;}
-a,a:visited{color:#34345c;}
-.sideArrows{color:#b7c5d9;}
-#pager,.reply{
-        border-right-style:solid;
-        border-bottom-style:solid;
-        border-color:#b7c5d9;
+
+a {
+    color:#0000ee;
 }
-input[type="text"],input[type="password"],textarea{
-        border-style:solid;
-        border-color:#aaa;
+
+a:visited {
+    color:#0000ee;
 }
-input[type="text"]:focus,input[type="password"]:focus,textarea:focus{border-color:#98e;}
-a:hover{color:#d00!important;}
-.postblock,.postlists th{
-        background-color:#98e;
-        border-style:solid;
+
+.rtd {
+    background-color: #F0E0D6;
+    padding-right:5px;
 }
-hr{border-color:#b7c5d9;}
-.subject{color:#0f0c5d;}
-.nameBlock{color:#117743;}
-.postlists tr:nth-of-type(odd),.reply,#pager{background-color:#d6daf0;}
-.postlists tr:target,table:target .post.reply{
-        background-color:#d6bad0;
-        border-color:#ba9dbf;
+
+.rts {
+    vertical-align:top;
+    width:18px;
 }
-#errormsg{color:red}
-.omittedposts{color:#707070}
-.viewmode,.replymode{
-        background-color:#0010E0;
-        color:#fff;
+
+.implying {
+    color: #789922;
 }
-.unkfunc{color:#789922;}
-.unkfunc2{color:#FF69B3;}
-.quotelink{color:#d00;}
-.backlink a{color:#34345C;}
+
+.fl {
+    background-color: #ea8;
+    width:4.5em;
+}
+
+#info {
+    font-size:small;
+    max-width:75%;
+    margin-bottom:50px;
+}
+
+#pb {
+    margin-left:auto;
+    margin-right:auto;
+    width:50%;
+}
+
+.adminpost {
+    font-style:italic;
+    color:red;
+    font-family:sans-serif;
+}
+
+#deleteform {
+    float:right;
+}
 
 </style>
 <hr width="90%" size=1><form action="post.php?mode=post" method="POST" enctype="multipart/form-data"><input type="hidden" name="thread" value="0"><div id="pb"><table><tr><td class="fl"><b>Name</b></td><td><input type=text name=name size="28"></td></tr>
