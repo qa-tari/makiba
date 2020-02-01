@@ -12,7 +12,7 @@ small imageboard script- on devel
 A futaba-style imageboard script that doesn't require a database.
 
 
-Installation
+#Installation
 ~~~~~~~~~~~~
 make sure to install php-gd
 https://www.php.net/manual/de/image.installation.php
