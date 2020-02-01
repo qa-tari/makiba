@@ -88,7 +88,7 @@ define("ADMINTRIP", "the part after the ! in an admin's trip");
 define("SECRETKEY", "replace this string with something really random"); // something "random"
 define("INFOFILE", "info"); // board rules/whatever
 define("SESSFILE", "session"); // where to store the session key
-define("URLROOT", "/blog/"); // root of the board, i.e the part after http://mychan.org
+define("URLROOT", ""); // root of the board, i.e the part after http://mychan.org
 define("IMGDIR", "src/"); // where to store full res images
 define("THUMBDIR", "thumb/"); // thumbnails
 define("IMGDELETE", "catto.png"); // what to show if an image is deleted
