@@ -358,16 +358,9 @@ function delete_imageonly($id){
     writeposts($a); 
 }
 
-function isbanned($ip){
-    $ips = explode("\n", file_get_contents(BANFILE));
-    if(!empty($ip))
-    {
-        foreach($ips as $u){
-            if(strpos($ip, $u) === 0)
-                return 1;
-        }
-    }
-    return 0;
+function isBanned($ip) {
+  $ips = explode("\n", file_get_contents(BANFILE));
+  return in_array($ip, $ips);
 }
 
 function can_post($ip){
