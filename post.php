@@ -360,9 +360,12 @@ function delete_imageonly($id){
 
 function isbanned($ip){
     $ips = explode("\n", file_get_contents(BANFILE));
-    foreach($ips as $u){
-        if(strpos($ip, $u) === 0)
-            return 1;
+    if(!empty($ip))
+    {
+        foreach($ips as $u){
+            if(strpos($ip, $u) === 0)
+                return 1;
+        }
     }
     return 0;
 }
