@@ -10,11 +10,11 @@ Pineapple - helping out aswell
 ~~~~~~~~~~~~~~~~~~~
 
 # Admin pannel Installation
-
+~~~~~~~~~~~~
 -> sudo apt install php-mbstring
 make sure php-mbstring is installed
 
-
+~~~~~~~~~~~~
 # Installation
 ~~~~~~~~~~~~
 make sure to install php-gd
