@@ -452,7 +452,7 @@ function old_style_thread($thread, $full) {
     if($full){
         $mc = markup($tp['comment']);
     } else {
-        if(strlen($tp['comment']) > POSTTRUNCATE){
+        if(mb_strlen($tp['comment']) > POSTTRUNCATE){
             $mc = markup(mb_substr($tp['comment'], 0, POSTTRUNCATE))."．．．";
             $tm = "Post truncated. Click Reply to read it all.";
         }
@@ -1061,8 +1061,8 @@ if(isset($_GET['mode'])){
         }
 
         if(!$ad){
-            if(strlen($pinf['email']) > MAXMAIL || strlen($pinf['comment']) > MAXCOMMENT || strlen($pinf['name']) > MAXNAME
-               || $pinf['subject'] > MAXSUBJECT || $pinf['key'] > MAXKEY){
+            if(mb_strlen($pinf['email']) > MAXMAIL || mb_strlen($pinf['comment']) > MAXCOMMENT || mb_strlen($pinf['name']) > MAXNAME
+               || mb_strlen($pinf['subject']) > MAXSUBJECT || mb_strlen($pinf['key']) > MAXKEY){
                 abort_error(ERR_TOOLONG);
             }
         }
