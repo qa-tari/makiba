@@ -786,7 +786,7 @@ if(isset($_GET['mode'])){
     if($mode == "login"){
         if(isset($_POST['pw'])){
             if(login($_POST['pw'])){
-                echo '<!doctype html><html><head><meta http-equiv="Location" content="'.URLROOT.SCRIPTNAME.'?mode=admin"></head><body>Redirecting to admin page.</body></html>';
+                echo '<meta http-equiv="refresh" content="2; url='.URLROOT.SCRIPTNAME.'?mode=admin">Redirecting to admin page.';
             } else {
                 infopage("Login failed", "Incorrect password.");
             }
