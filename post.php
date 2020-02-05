@@ -527,7 +527,7 @@ function postform($op){
     
         $r .= '<div id="pb"><table><tr><td class="fl"><b>Name</b></td><td><input type=text name=name size="28"></td></tr>
 <tr><td class="fl"><b>E-mail</b></td><td><input type=text name=email size="28"></td></tr>
-<tr><td class="fl"><b>Subject</b></td><td><input type=text name=subject size="35"><input type=submit value="スレッドを立てる" onClick="ptfk(0)"></td></tr>
+<tr><td class="fl"><b>Subject</b></td><td><input type=text name=subject size="35"><input type=submit value="返信する" onClick="ptfk(0)"></td></tr>
 <tr><td class="fl"><b>Comment</b></td><td><textarea id="com" name=comment cols="48" rows="4" id="ftxa"></textarea></td></tr>
 <tr><td class="fl"><b>添付File</b></td><td><input type=file name=img size="35">';
         if(ALLOWNOIMAGEOP){
