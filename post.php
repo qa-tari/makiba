@@ -401,7 +401,7 @@ function old_style_image($tp){
         $tp['src'] = URLROOT.IMGDIR.$tp['src'];
         $tp['thumb'] = URLROOT.THUMBDIR.$tp['thumb'];
     }
-    $g = 'Filename: <a href="'.URLROOT.IMGDIR.$tp['src'].'" target="_blank">'.$tp['f'].'</a>-('.$tp['size'].' B) <small>Thumbnail</small><br>
+    $g = 'Filename: <a href="'.$tp['src'].'" target="_blank">'.$tp['f'].'</a>-('.$tp['size'].' B) <small>Thumbnail</small><br>
 <a href="'.$tp['src'].'" target="_blank">';
     if($tp['thread'] == 0)
         $g .= '<img style="margin-bottom:10px;" src="'.$tp['thumb'].'" border=0 align=left hspace=20 alt="'.$tp['size'].' B"></a>';
