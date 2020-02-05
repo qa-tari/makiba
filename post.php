@@ -58,10 +58,10 @@ a:visited {
 
 </style>
 <hr width="90%" size=1><form action="post.php?mode=post" method="POST" enctype="multipart/form-data"><input type="hidden" name="thread" value="0"><div id="pb"><table><tr><td class="fl"><b>Name</b></td><td><input type=text name=name size="28"></td></tr>
-<tr><td class="fl"><b>E-mail</b></td><td><input type=text name=email size="28"></td></tr>
-<tr><td class="fl"><b>Subject</b></td><td><input type=text name=subject size="35"><input type=submit value="スレッドを立てる" onClick="ptfk(0)"></td></tr>
-<tr><td class="fl"><b>Comment</b></td><td><textarea id="com" name=comment cols="48" rows="4" id="ftxa"></textarea></td></tr>
-<tr><td class="fl"><b>File</b></td><td><input type=file name=img size="35">[<label><input type=checkbox name="noimage" value="y">No image</label>]</td></tr><tr><td class="fl"><b>Key</b></td><td><input type=password name=key size=8 maxlength=12 ></td></tr>
+<tr><td class="fl"><b>E-Mail</b></td><td><input type=text name=email size="28"></td></tr>
+<tr><td class="fl"><b>Betreff</b></td><td><input type=text name=subject size="35"><input type=submit value="Thread erstellen" onClick="ptfk(0)"></td></tr>
+<tr><td class="fl"><b>Nachricht</b></td><td><textarea id="com" name=comment cols="48" rows="4" id="ftxa"></textarea></td></tr>
+<tr><td class="fl"><b>Datei</b></td><td><input type=file name=img size="35">[<label><input type=checkbox name="noimage" value="y">Kein Bild</label>]</td></tr><tr><td class="fl"><b>Passwort</b></td><td><input type=password name=key size=8 maxlength=12 ></td></tr>
 </table>
 <div id="info">
 
@@ -93,7 +93,7 @@ define("THUMBDIR", "thumb/"); // thumbnails
 define("IMGDELETE", "catto.png"); // what to show if an image is deleted
 define("THUMBDELETE", "thumb_catto.png"); // deleted image thumb
 define("THREADDIR", "res/"); // where to store threads
-define("MOVEUPLOAD", "The file could not be uploaded."); // error if the file couldn't be uploaded
+define("MOVEUPLOAD", "Die Datei konnte nicht hochgeladen werden."); // error if the file couldn't be uploaded
 define("ALLOWEDTYPES", array("image/jpeg", "image/png", "image/gif", IMAGETYPE_GIF, IMAGETYPE_PNG, IMAGETYPE_JPEG)); // allowed types
 define("BADFILESFILE", "bad"); // where the hashes of banned files are stored
 define("BANFILE", "bans"); // where banned IPs are stored
@@ -122,21 +122,21 @@ define("POSTWAIT", 20);
 define("CSSSTYLE", "blog");
 define("MAXREPLIES", 300);
 define("MAXTHREADS", 40);
-define("ERR_NOTHREADID", "No thread id submitted. Please submit again with a thread id.");
-define("ERR_NOTFOUND", "That OP thread doesn't exist. Please start a new thread.");
-define("ERR_THREADSOON", "You cannot post a thread so soon. Please try again later.");
-define("ERR_POSTSOON", "You cannot post so quickly. Please try again later.");
-define("ERR_BANNED", "Your IP or IP range is banned.");
-define("ERR_MOVEUPLOAD", "Your file could not be uploaded. Please try another file.");
-define("ERR_BADTYPE", "Your file's filetype is not accepted. Please try another filetype.");
-define("ERR_BADFILE", "The hash of that file is on the ban list. Please try another file.");
-define("ERR_FILESIZE", "Your file's size is too large. Please try reducing the quality.");
-define("ERR_DIM", "Your file's dimensions are too large. Please try resizing it.");
-define("ERR_NEEDIMAGE", "Sorry, you need an image to post on this board.");
-define("ERR_MUSTCOMMENT", "You must add a comment. Try typing something.");
-define("ERR_TOOLONG", "Your comment is too long. Try and summarise it.");
-define("ERR_FULLTHREAD", "The thread you have replied to has reached the maximum number of posts.");
-define("ERR_ADMINOPONLY", "Sorry, only the administrator can create new threads at the moment.");
+define("ERR_NOTHREADID", "Keine Thread-Nummer übermittelt. Bitte versuche es erneut mit einem gültigen Thread.");
+define("ERR_NOTFOUND", "Dieser Thread existiert nicht. Bitte eröffne einen neuen Thread.");
+define("ERR_THREADSOON", "Du kannst so schnell keinen neuen Thread erstellen. Bitte versuche es später noch einmal.");
+define("ERR_POSTSOON", "Du kannst nicht so schnell posten. Bitte versuche es später noch einmal.");
+define("ERR_BANNED", "Deine IP-Adresse oder -Adressbereich ist gesperrt.");
+define("ERR_MOVEUPLOAD", "Deine Datei konnte nicht hochgeladen werden. Bitte versuche es mit einer anderen Datei.");
+define("ERR_BADTYPE", "Dateien dieses Typs werden nicht akzeptiert. Bitte versuche es mit einem anderen Dateityp.");
+define("ERR_BADFILE", "Der Inhalt dieser Datei befindet sich auf der Sperrliste. Bitte versuche es mit einer anderen Datei.");
+define("ERR_FILESIZE", "Deine Datei ist zu groß. Bitte versuche die Qualität oder Bildgröße zu reduzieren.");
+define("ERR_DIM", "Die Abmessungen deiner Datei sind zu groß. Bitte verkleinere die Bildgröße.");
+define("ERR_NEEDIMAGE", "Du brauchst ein Bild, um auf diesem Brett zu posten.");
+define("ERR_MUSTCOMMENT", "Du musst eine Nachricht hinzufügen. Bitte gib etwas ein.");
+define("ERR_TOOLONG", "Deine Nachricht ist zu lang. Bitte fasse dich kürzer.");
+define("ERR_FULLTHREAD", "Der Thread, auf den du geantwortet hast, hat die maximale Anzahl von Beiträgen erreicht.");
+define("ERR_ADMINOPONLY", "Entschuldigung, im Moment kann nur der Administrator neue Threads erstellen.");
 
 function posthash($tp){
     $threadid = $tp['thread']?$tp['thread']:$tp['id'];
@@ -190,7 +190,7 @@ function logout(){
 }
 
 function infopage($t, $s){
-    echo '<!doctype html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><link rel="stylesheet" type="text/css" href="'.URLROOT.CSSSTYLE.'.css"><title>'.$t.'</title></head><body><h2>'.$t.'</h2><p>'.$s.'</p> [<a href="'.URLROOT.'index.html">Return]</a></body></html>';
+    echo '<!doctype html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><link rel="stylesheet" type="text/css" href="'.URLROOT.CSSSTYLE.'.css"><title>'.$t.'</title></head><body><h2>'.$t.'</h2><p>'.$s.'</p> [<a href="'.URLROOT.'index.html">Zurück]</a></body></html>';
     die();
 }
 
@@ -388,7 +388,7 @@ function can_post($ip){
 function old_style_text($tp){
     $time = date("y/m/d (D) H:i", $tp['time']);
     return '<input type=checkbox name="del[]" value="'.$tp['id'].'"><font color="#cc1105"><b>'.$tp['subject'].'</b></font>
-Name <font color="#117743"><b '.($tp['admin'] ? 'class="adminpost"' : '').'>'.$tp['name'].' </b></font> '.$time.' ID:'.posthash($tp).' No.<a href="javascript:void(0);" onclick="javascript:quote('.$tp['id'].');">'.$tp['id'].'</a>';
+Name <font color="#117743"><b '.($tp['admin'] ? 'class="adminpost"' : '').'>'.$tp['name'].' </b></font> '.$time.' ID:'.posthash($tp).' Nr. <a href="javascript:void(0);" onclick="javascript:quote('.$tp['id'].');">'.$tp['id'].'</a>';
 }
 
 function old_style_image($tp){
@@ -401,7 +401,7 @@ function old_style_image($tp){
         $tp['src'] = URLROOT.IMGDIR.$tp['src'];
         $tp['thumb'] = URLROOT.THUMBDIR.$tp['thumb'];
     }
-    $g = 'Filename: <a href="'.URLROOT.IMGDIR.$tp['src'].'" target="_blank">'.$tp['f'].'</a>-('.$tp['size'].' B) <small>Thumbnail</small><br>
+    $g = 'Dateiname: <a href="'.URLROOT.IMGDIR.$tp['src'].'" target="_blank">'.$tp['f'].'</a>-('.$tp['size'].' B) <small>Thumbnail</small><br>
 <a href="'.$tp['src'].'" target="_blank">';
     if($tp['thread'] == 0)
         $g .= '<img style="margin-bottom:10px;" src="'.$tp['thumb'].'" border=0 align=left hspace=20 alt="'.$tp['size'].' B"></a>';
@@ -435,7 +435,7 @@ function old_style_thread($thread, $full) {
 
     $txt .= '<a id="p'.$tp['id'].'">';
 	if(!$full && count($tp['replies']) > SHOWREPLIES) {
-        $om = (count($tp['replies']) - SHOWREPLIES) . ' repl'.((count($tp['replies']) - SHOWREPLIES) == 1 ? 'y' : 'ies').' ommitted. Click Reply to read all.';
+        $om = (count($tp['replies']) - SHOWREPLIES) . ' Antwort'.((count($tp['replies']) - SHOWREPLIES) == 1 ? '' : 'en').' ausgelassen. Klicke auf Antworten, um alle zu lesen.';
         } else {
 		$om = "";
 	}
@@ -454,10 +454,10 @@ function old_style_thread($thread, $full) {
     } else {
         if(mb_strlen($tp['comment']) > POSTTRUNCATE){
             $mc = markup(mb_substr($tp['comment'], 0, POSTTRUNCATE))."．．．";
-            $tm = "Post truncated. Click Reply to read it all.";
+            $tm = "Beitrag abgeschnitten. Klicke zum vollständigen Lesen auf Antworten.";
         }
     }
-    $txt .= ' [<a href="'.URLROOT.THREADDIR.$tp['id'].'.html" class="hsbn">Reply</a>]<blockquote>'.$mc.'</blockquote><font color="#707070">'.$tm.$om.'</font><br>';
+    $txt .= ' [<a href="'.URLROOT.THREADDIR.$tp['id'].'.html" class="hsbn">Antworten</a>]<blockquote>'.$mc.'</blockquote><font color="#707070">'.$tm.$om.'</font><br>';
 
     if(!$full){
         $replies = array_slice($replies, -SHOWREPLIES);
@@ -485,9 +485,9 @@ function pageselect($pagenum, $pagecount) {
     $t = "";
     $t .= '<table border="1" id="pageselect"><tr><td>';
     if($pagenum == 0)
-        $t .= 'First page';
+        $t .= 'Erste Seite';
     else
-        $t .= '<form action="'.URLROOT.($pagenum-1).'.html" method="GET"><input type="submit" value="Previous page"></form>';
+        $t .= '<form action="'.URLROOT.($pagenum-1).'.html" method="GET"><input type="submit" value="Vorherige Seite"></form>';
     $t .= '</td><td>';
     for($i = 0; $i < $pagecount; $i++){
         if($i == $pagenum)
@@ -497,23 +497,23 @@ function pageselect($pagenum, $pagecount) {
     }
     $t .= '</td><td>';
     if($pagenum == $pagecount-1)
-        $t .= 'Last page';
+        $t .= 'Letzte Seite';
     else
-        $t.= '<form action="'.URLROOT.($pagenum+1).'.html" method="GET"><input type="submit" value="Next page"></form>';
+        $t.= '<form action="'.URLROOT.($pagenum+1).'.html" method="GET"><input type="submit" value="Nächste Seite"></form>';
     return $t.'</table>';
 }
 
 function deleteform(){
-    return '<div id="deleteform">[Delete post] [<input type=checkbox name="imageonly" value="y"> File only]<br>Deletion key <input type=text name="deletekey"> <input type=submit value="Delete"></form></div>';
+    return '<div id="deleteform">[Beitrag löschen] [<input type=checkbox name="imageonly" value="y"> Nur Datei]<br>Lösch-Passwort <input type=text name="deletekey"> <input type=submit value="Löschen"></form></div>';
 }
 
 function postform($op){
         $r = '';
 
     if($op > 0)
-        $r .= '[<a href="'.URLROOT.'">Return</a>]
+        $r .= '[<a href="'.URLROOT.'">Zurück</a>]
 <div style="background-color:#e04000">
-<font color="#FFFFFF">Reply mode</font>
+<font color="#FFFFFF">Antwort-Modus</font>
 </div>';
     $inf = file_get_contents(INFOFILE);
         if(!ADMINOPONLY || $op > 0){
@@ -524,14 +524,14 @@ function postform($op){
         $r .= '<input type="hidden" name="thread" value="'.$op.'">';
     
         $r .= '<div id="pb"><table><tr><td class="fl"><b>Name</b></td><td><input type=text name=name size="28"></td></tr>
-<tr><td class="fl"><b>E-mail</b></td><td><input type=text name=email size="28"></td></tr>
-<tr><td class="fl"><b>Subject</b></td><td><input type=text name=subject size="35"><input type=submit value="スレッドを立てる" onClick="ptfk(0)"></td></tr>
-<tr><td class="fl"><b>Comment</b></td><td><textarea id="com" name=comment cols="48" rows="4" id="ftxa"></textarea></td></tr>
-<tr><td class="fl"><b>添付File</b></td><td><input type=file name=img size="35">';
+<tr><td class="fl"><b>E-Mail</b></td><td><input type=text name=email size="28"></td></tr>
+<tr><td class="fl"><b>Betreff</b></td><td><input type=text name=subject size="35"><input type=submit value="Antwort erstellen" onClick="ptfk(0)"></td></tr>
+<tr><td class="fl"><b>Nachricht</b></td><td><textarea id="com" name=comment cols="48" rows="4" id="ftxa"></textarea></td></tr>
+<tr><td class="fl"><b>Datei</b></td><td><input type=file name=img size="35">';
         if(ALLOWNOIMAGEOP){
-            $r .= '[<label><input type=checkbox name="noimage" value="y">No image</label>]';
+            $r .= '[<label><input type=checkbox name="noimage" value="y">Kein Bild</label>]';
         }
-        $r .= '</td></tr><tr><td class="fl"><b>Key</b></td><td><input type=password name=key size=8 maxlength=12 ></td></tr>
+        $r .= '</td></tr><tr><td class="fl"><b>Passwort</b></td><td><input type=password name=key size=8 maxlength=12 ></td></tr>
 </table>
 <div id="info">
 '.$inf.'
@@ -539,10 +539,10 @@ function postform($op){
 </div>
 </form>';
     } else {
-        $r .= '<h2 class="error">This thread has reached its post limit</h2>';
+        $r .= '<h2 class="error">Dieser Thread hat sein Beitragslimit erreicht.</h2>';
     }
     } else {
-        $r .= '<h2 class="error">The board is locked.</h2>';
+        $r .= '<h2 class="error">Das Brett ist gesperrt.</h2>';
     }
     }
         return $r;
@@ -618,7 +618,7 @@ function all_posts_struct($posts){
 }
 
 function footer(){
-    return '<footer style="margin-top:20px;font-size:small;text-align:center;clear:both;">makiba, inspired by <a href="http://www.64ch.net/">64chan</a></footer>';
+    return '<footer style="margin-top:20px;font-size:small;text-align:center;clear:both;">makiba, inspiriert von <a href="http://www.64ch.net/">64chan</a></footer>';
 }
 
 function generatepage($posts, $page){
@@ -644,13 +644,13 @@ function generatepage($posts, $page){
 
     $z= pagehead(0);
     if(SHOWPOSTLIST){
-        $z .= '<div id="postlist"><b>Post list: </b>';
+        $z .= '<div id="postlist"><b>Beitragsliste: </b>';
         $i = 0;
         foreach($op_posts as $pp){
             $s = '';
             if($pp['subject'] == ''){
                 if($pp['comment'] == ''){
-                    $s = "(no subject)";
+                    $s = "(kein Betreff)";
                 } else {
                     $s = mb_substr($pp['comment'], 0, 10);
                 }
@@ -780,48 +780,48 @@ if(isset($_GET['mode'])){
 
     if($mode == "regen"){
         generatepage(getposts(), 0);
-        infopage("Board regeneration", "Regenerated.");
+        infopage("Brett-Aktualisierung", "Regeneriert.");
     }
 
     if($mode == "login"){
         if(isset($_POST['pw'])){
             if(login($_POST['pw'])){
-                echo '<meta http-equiv="refresh" content="2; url='.URLROOT.SCRIPTNAME.'?mode=admin">Redirecting to admin page.';
+                echo '<meta http-equiv="refresh" content="2; url='.URLROOT.SCRIPTNAME.'?mode=admin">Weiterleitung zur Admin-Seite.';
             } else {
-                infopage("Login failed", "Incorrect password.");
+                infopage("Anmeldung fehlgeschlagen", "Falsches Passwort.");
             }
         } else {
-            infopage("Login", '<form method="POST" action="'.URLROOT.SCRIPTNAME.'?mode=login">Password: <input type="password" name="pw"> <input type="submit" value="Log in"></form>');
+            infopage("Anmeldung", '<form method="POST" action="'.URLROOT.SCRIPTNAME.'?mode=login">Passwort: <input type="password" name="pw"> <input type="submit" value="Anmelden"></form>');
         }
     }
 
     if($mode == "admin"){
         if(!isset($_COOKIE['sess_id']) || !validate($_COOKIE['sess_id'])){
-            infopage("Login failed", "Login could not be validated.");
+            infopage("Anmeldung fehlgeschlagen", "Anmeldung konnte nicht überprüft werden.");
         } else {
             $inf = file_get_contents(INFOFILE);
-            $t = "<h3>New post</h3>";
+            $t = "<h3>Neuer Beitrag</h3>";
             $t .= '<form action="'.URLROOT.SCRIPTNAME.'?mode=post" method="POST" enctype="multipart/form-data">';
 
             $t .= '<input type="hidden" name="thread" value="0">';
             
             $t .= '<div id="pb"><table><tr><td class="fl"><b>Name</b></td><td><input type=text name=name size="28"></td></tr>
-<tr><td class="fl"><b>E-mail</b></td><td><input type=text name=email size="28"></td></tr>
-<tr><td class="fl"><b>Subject</b></td><td><input type=text name=subject size="35"><input type=submit value="スレッドを立てる" onClick="ptfk(0)"></td></tr>
-<tr><td class="fl"><b>Comment</b></td><td><textarea id="com" name=comment cols="48" rows="4" id="ftxa"></textarea></td></tr>
-<tr><td class="fl"><b>添付File</b></td><td><input type=file name=img size="35">';
+<tr><td class="fl"><b>E-Mail</b></td><td><input type=text name=email size="28"></td></tr>
+<tr><td class="fl"><b>Betreff</b></td><td><input type=text name=subject size="35"><input type=submit value="Thread erstellen" onClick="ptfk(0)"></td></tr>
+<tr><td class="fl"><b>Nachricht</b></td><td><textarea id="com" name=comment cols="48" rows="4" id="ftxa"></textarea></td></tr>
+<tr><td class="fl"><b>Datei</b></td><td><input type=file name=img size="35">';
             if(ALLOWNOIMAGEOP){
-                $t .= '[<label><input type=checkbox name="noimage" value="y">No image</label>]';
+                $t .= '[<label><input type=checkbox name="noimage" value="y">Kein Bild</label>]';
             }
             $t .= '</td></tr>
-<tr><td class="fl"><b>Key</b></td><td><input type=password name=key size=8 maxlength=12 ></td></tr>
+<tr><td class="fl"><b>Passwort</b></td><td><input type=password name=key size=8 maxlength=12 ></td></tr>
 </table>
 <div id="info">
 '.$inf.'
 </div>
 </div>
 </form>';
-            $t .= '<h3>Post list</h3><form action="'.URLROOT.SCRIPTNAME.'?mode=delete" method="POST">';
+            $t .= '<h3>Beitragsliste</h3><form action="'.URLROOT.SCRIPTNAME.'?mode=delete" method="POST">';
             $op_posts = all_posts_struct(getposts());
             foreach($op_posts as $tp){
                 if(OLDSTYLE){
@@ -829,7 +829,7 @@ if(isset($_GET['mode'])){
                 }
             }
             $t .= deleteform();
-            infopage("Admin panel", $t);
+            infopage("Admin-Menü", $t);
         }
     }
 
@@ -866,13 +866,13 @@ if(isset($_GET['mode'])){
             abort_error(ERR_NODELKEY);
         }
         generatepage(getposts(), 0);
-        infopage("Deleted posts", "The following posts have been deleted: " . implode(", ", $deleted) . "<br>The following posts have their image deleted: " . implode(", ", $img_deleted) . "<br>The following posts have not been deleted: " . implode(", ", $undeleted));
+        infopage("Gelöschte Beiträge", "Die folgenden Beiträge wurden gelöscht: " . implode(", ", $deleted) . "<br>Aus folgenden Beiträgen wurden die Bilder gelöscht: " . implode(", ", $img_deleted) . "<br>Die folgenden Beiträge wurden nicht gelöscht: " . implode(", ", $undeleted));
     }
 
     
 	if($mode == "post"){
         if(LOCKED){
-            abort_error("This board is locked.");
+            abort_error("Das Brett ist gesperrt.");
         }
 		$pinf = array();
 		$pinf['id'] = 0;
@@ -1127,16 +1127,16 @@ if(isset($_GET['mode'])){
                 echo '<meta http-equiv="refresh" content="2; url='.URLROOT.THREADDIR.$pinf['id'].'.html">';
             }
             if($pinf['src'] != ""){
-                echo '<h2>'.$pinf['file'].' uploaded. Redirecting to the thread.';
+                echo '<h2>'.$pinf['file'].' hochgeladen. Leite zum Thread weiter.';
             } else {
-                echo '<h2>Comment posted. Redirecting to the thread.</h2>';
+                echo '<h2>Nachricht gepostet. Leite zum Thread weiter.</h2>';
             }
         } else {
             echo '<meta http-equiv="refresh" content="2; url='.URLROOT.'0.html">';
             if($pinf['src'] != ""){
-                echo '<h2>'.$pinf['file'].' uploaded.';
+                echo '<h2>'.$pinf['file'].' hochgeladen.';
             } else {
-                echo '<h2>Comment posted.</h2>';
+                echo '<h2>Nachricht gepostet.</h2>';
             }
         }
     }
