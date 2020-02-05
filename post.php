@@ -455,6 +455,8 @@ function old_style_thread($thread, $full) {
         if(mb_strlen($tp['comment']) > POSTTRUNCATE){
             $mc = markup(mb_substr($tp['comment'], 0, POSTTRUNCATE))."．．．";
             $tm = "Post truncated. Click Reply to read it all.";
+        } else {
+            $mc = markup($tp['comment']);
         }
     }
     $txt .= ' [<a href="'.URLROOT.THREADDIR.$tp['id'].'.html" class="hsbn">Reply</a>]<blockquote>'.$mc.'</blockquote><font color="#707070">'.$tm.$om.'</font><br>';
