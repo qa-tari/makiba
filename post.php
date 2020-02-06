@@ -433,14 +433,13 @@ function old_style_thread($thread, $full) {
         //print_r($replies);
     }
 
-    $txt .= '<a id="p'.$tp['id'].'">';
 	if(!$full && count($tp['replies']) > SHOWREPLIES) {
         $om = (count($tp['replies']) - SHOWREPLIES) . ' repl'.((count($tp['replies']) - SHOWREPLIES) == 1 ? 'y' : 'ies').' ommitted. Click Reply to read all.';
         } else {
 		$om = "";
 	}
 
-    $txt .= '<div class="thre">';
+    $txt .= '<div class="thre" id="p'.$tp['id'].'">';
 
 	if($tp['src'] != ""){
 		$txt .= old_style_image($tp);
@@ -466,8 +465,7 @@ function old_style_thread($thread, $full) {
     }
     if(count($tp['replies']) > 0){
         foreach($replies as $reply){
-            $txt .= '<a id="p'.$reply['id'].'">';
-            $txt .= '<table border=0><tr><td class=rts>…</td><td class=rtd>';
+            $txt .= '<table border=0 id="p'.$reply['id'].'"><tr><td class=rts>…</td><td class=rtd>';
             $txt .= old_style_text($reply);
             $txt .= "<br>";
             if($reply['src'] != ""){
