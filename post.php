@@ -137,6 +137,8 @@ define("ERR_MUSTCOMMENT", "You must add a comment. Try typing something.");
 define("ERR_TOOLONG", "Your comment is too long. Try and summarise it.");
 define("ERR_FULLTHREAD", "The thread you have replied to has reached the maximum number of posts.");
 define("ERR_ADMINOPONLY", "Sorry, only the administrator can create new threads at the moment.");
+define("ERR_NODELKEY", "You need a deletion key to delete posts.");
+define("ERR_NODELS", "You have to check posts to delete.");
 
 function posthash($tp){
     $threadid = $tp['thread']?$tp['thread']:$tp['id'];
