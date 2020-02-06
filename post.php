@@ -910,14 +910,14 @@ if(isset($_GET['mode'])){
 		if(isset($_POST['name']) && trim($_POST['name']) != ""){
             $_POST['name'] = trim($_POST['name']);
             if(!strstr($_POST['name'], '#')){
-                $pinf['name'] = clean($_POST['name']);
+                $pinf['name'] = preg_replace('/![.-9A-Za-z]+$/', '!', clean($_POST['name']));;
             } else {
                 $parts = explode('#', $_POST['name']);
-                $n = $parts[0];
+                $n = preg_replace('/!+$/', '', clean($parts[0]));
                 array_shift($parts);
                 $t = implode('', $parts);
                 $g = mktripcode($t);
-                $pinf['name'] = clean($n) . '!' . $g;
+                $pinf['name'] = $n . '!' . $g;
                 if(strcmp($g, ADMINTRIP) == 0){
                     $ad = 1;
                 }
