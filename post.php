@@ -137,6 +137,8 @@ define("ERR_MUSTCOMMENT", "Du musst eine Nachricht hinzufügen. Bitte gib etwas 
 define("ERR_TOOLONG", "Deine Nachricht ist zu lang. Bitte fasse dich kürzer.");
 define("ERR_FULLTHREAD", "Der Thread, auf den du geantwortet hast, hat die maximale Anzahl von Beiträgen erreicht.");
 define("ERR_ADMINOPONLY", "Entschuldigung, im Moment kann nur der Administrator neue Threads erstellen.");
+define("ERR_NODELKEY", "Du brauchst ein Lösch-Passwort, um Beiträge zu löschen.");
+define("ERR_NODELS", "Du musst die zu löschenden Beiträge auswählen.");
 
 function posthash($tp){
     $threadid = $tp['thread']?$tp['thread']:$tp['id'];
@@ -525,7 +527,7 @@ function postform($op){
     
         $r .= '<div id="pb"><table><tr><td class="fl"><b>Name</b></td><td><input type=text name=name size="28"></td></tr>
 <tr><td class="fl"><b>E-Mail</b></td><td><input type=text name=email size="28"></td></tr>
-<tr><td class="fl"><b>Betreff</b></td><td><input type=text name=subject size="35"><input type=submit value="Antwort erstellen"></td></tr>
+<tr><td class="fl"><b>Betreff</b></td><td><input type=text name=subject size="35"><input type=submit value="'.($op>0?'Antworten':'Thread erstellen').'"></td></tr>
 <tr><td class="fl"><b>Nachricht</b></td><td><textarea id="com" name=comment cols="48" rows="4" id="ftxa"></textarea></td></tr>
 <tr><td class="fl"><b>Datei</b></td><td><input type=file name=img size="35">';
         if(ALLOWNOIMAGEOP){
@@ -908,14 +910,14 @@ if(isset($_GET['mode'])){
 		if(isset($_POST['name']) && trim($_POST['name']) != ""){
             $_POST['name'] = trim($_POST['name']);
             if(!strstr($_POST['name'], '#')){
-                $pinf['name'] = clean($_POST['name']);
+                $pinf['name'] = preg_replace('/![.-9A-Za-z]+$/', '!', clean($_POST['name']));;
             } else {
                 $parts = explode('#', $_POST['name']);
-                $n = $parts[0];
+                $n = preg_replace('/!+$/', '', clean($parts[0]));
                 array_shift($parts);
                 $t = implode('', $parts);
                 $g = mktripcode($t);
-                $pinf['name'] = clean($n) . '!' . $g;
+                $pinf['name'] = $n . '!' . $g;
                 if(strcmp($g, ADMINTRIP) == 0){
                     $ad = 1;
                 }
